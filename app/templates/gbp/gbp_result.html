@@ -1,4 +1,4 @@
-<b>Distro Information from Store Service</b>
+<b>Distro Information</b>
 <br />
 <br />
 <table class="table table-bordered table-condensed ">
@@ -17,6 +17,40 @@
             <td class="text-center">{{ distro.name }} </td>
             <td class="text-center">{{ distro.description }} </td>
             <td class="text-center">{{ distro.isRetired }} </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<br />
+<b>In Season Rolling-distro Store Search</b>
+<br />
+<table class="table table-bordered table-condensed ">
+    <thead>
+        <tr>
+            <th>Distro ID</th>
+            <th>Name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Time Based Stores</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for distro in gbp_info.rolling_distro_stores %}
+        <tr>
+            <td class="text-center">{{ distro.id }} </td>
+            <td class="text-center">{{ distro.distroName }} </td>
+            <td class="text-center">{{ distro.inStoreStartDate }} </td>
+            <td class="text-center">{{ distro.markdownDate }} </td>
+            <td>
+                Store Lists: {{ distro.rollingDistro.timeBasedStores | length }}
+                <br />
+                {% for stores in distro.rollingDistro.timeBasedStores %}
+                    <b>From</b> {{ stores.startDate }} 
+                    <b>To</b> {{ stores.endDate }} 
+                    <b>with</b> {{ stores.storeCount }} <b>stores</b>
+                    <br />
+                {% endfor %}
+            </td>
         </tr>
         {% endfor %}
     </tbody>
