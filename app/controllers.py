@@ -1,7 +1,7 @@
 from app import app
 
-from catalog_api import get_cc
-from catalog_transformer import transform_catalog
+from catalog.catalog_transformer import transform_catalog
+from catalog.catalog_api import get_cc
 
 from flask import render_template, request
 

@@ -42,70 +42,7 @@
     			<div class="panel panel-default">
     				<div class="panel-heading">Catalog</div>
     				<div class="panel-body">
-                        <b>Sub-class ID:</b> {{ catalog_cc.subClassId }} <br />
-                        <b>Store list ID:</b> {{ catalog_cc.storeListId }} <br />
-                        <b>SKU - Locations:</b> {{ catalog_cc.skuLocations }} <br />
-                        <br />
-                        <b>Distro Overview</b>
-                        <br /><br />
-                        <table class="table table-bordered table-condensed ">
-                            <thead>
-                                <tr>
-                                    <th>Distro ID</th>
-                                    <th>Distro name</th>
-                                    <th>ISD</th>
-                                    <th>MKD</th>
-                                    <th># Stores</th>
-                                    <th># Active Stores</th>
-                                    <th># Inactive Stores</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            {% for distro in catalog_cc.distros %}
-                            <tr>
-                                <td class="text-center">{{ distro.id }} </td>
-                                <td class="text-center">{{ distro.distroName }} </td>
-                                <td class="text-center">{{ distro.inStoreStartDate }} </td>
-                                <td class="text-center">{{ distro.markdownDate }} </td>
-                                <td class="text-center">{{ distro.activeStores | length + distro.inactiveStores | length }} </td>
-                                <td class="text-center">{{ distro.activeStores | length }} </td>
-                                <td class="text-center">{{ distro.inactiveStores | length }} </td>
-
-                            </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                        <br />
-                        <b>Stores Overview</b>
-                        <br /><br />
-                        <table class="table table-bordered table-condensed ">
-                            <thead>
-                                <tr>
-                                    <th>Distro name</th>
-                                    <th>Active Stores</th>
-                                    <th>Inactive Stores</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            {% for distro in catalog_cc.distros %}
-                            <tr>
-                                <td class="text-center">{{ distro.distroName }} </td>
-                                <td class="text-center">
-                                {% for store in distro.activeStores %}
-                                    {{ store.storeNumber }} 
-                                {% endfor %}
-                                </td>
-                                <td class="text-center">
-                                {% for store in distro.inactiveStores %}
-                                    {{ store.storeNumber }} 
-                                {% endfor %}
-                                </td>
-                            </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                        <br />
-
+                        {% include "catalog/catalog_result.html" %}
     				</div>
 				</div>
 			</div>
@@ -113,7 +50,6 @@
     			<div class="panel panel-default">
     				<div class="panel-heading">GBP</div>
     				<div class="panel-body">
-    					Bla
     				</div>
 				</div>
 			</div>
