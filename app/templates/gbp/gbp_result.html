@@ -1,0 +1,24 @@
+<b>Distro Information from Store Service</b>
+<br />
+<br />
+<table class="table table-bordered table-condensed ">
+    <thead>
+        <tr>
+            <th>Distro ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Retired</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for distro in gbp_info.distros_information %}
+        <tr>
+            <td class="text-center">{{ distro.id }} </td>
+            <td class="text-center">{{ distro.name }} </td>
+            <td class="text-center">{{ distro.description }} </td>
+            <td class="text-center">{{ distro.isRetired }} </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<br />

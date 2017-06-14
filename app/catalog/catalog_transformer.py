@@ -1,5 +1,7 @@
+from catalog_api import get_cc
 
-def transform_catalog(cc):
+def transform_catalog(ccNumber):
+    cc = get_cc(ccNumber)
     return {
         "storeListId": get(cc, "storeListId"),
         "skuLocations": len(cc["skus"][0]["locations"]), 
