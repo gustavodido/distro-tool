@@ -22,7 +22,7 @@
 	                    <div class="pull-left margin">
 	                        <span class="panel-heading navbar-heading">CC: </span>
 	                        <div class="btn-group">
-	                            <input type="text" class="form-control" placeholder="ex: 236897124" />
+	                            <input type="text" class="form-control" placeholder="ex: 236897124" name="ccNumber" />
 	                        </div>
 	                    </div>
 	                    <div class="pull-left ml-10">
@@ -42,7 +42,31 @@
     			<div class="panel panel-default">
     				<div class="panel-heading">Catalog</div>
     				<div class="panel-body">
-    					Bla
+                        <table class="table table-bordered table-condensed ">
+                            <thead>
+                                <tr>
+                                    <th>Distro name</th>
+                                    <th>ISD</th>
+                                    <th>MKD</th>
+                                    <th># Stores</th>
+                                    <th># Active Stores</th>
+                                    <th># Inactive Stores</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for distro in catalog_cc.distros %}
+                            <tr>
+                                <td class="text-center">{{ distro.distroName }} </td>
+                                <td class="text-center">{{ distro.inStoreStartDate }} </td>
+                                <td class="text-center">{{ distro.markdownDate }} </td>
+                                <td class="text-center">{{ distro.activeStores | length + distro.inactiveStores | length }} </td>
+                                <td class="text-center">{{ distro.activeStores | length }} </td>
+                                <td class="text-center">{{ distro.inactiveStores | length }} </td>
+
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
     				</div>
 				</div>
 			</div>
