@@ -13,7 +13,9 @@
     <tbody>
         {% for distro in gbp_info.distros_information %}
         <tr>
-            <td class="text-center">{{ distro.id }} </td>
+            <td class="text-center">
+            <a href="{{ distro['resource']}}" target="_blank">{{ distro.id }}</a>
+            </td>
             <td class="text-center">{{ distro.name }} </td>
             <td class="text-center">{{ distro.description }} </td>
             <td class="text-center">{{ distro.isRetired }} </td>

@@ -1,4 +1,4 @@
-from gbp_api import get_distro_information, get_rolling_distro
+from gbp_api import get_distro_information, get_distro_information_resource, get_rolling_distro
 
 def transform_gbp(cc):
     return {
@@ -9,7 +9,9 @@ def transform_gbp(cc):
 def transform_distro_information(cc):
     distros_information = []
     for distro in cc["distros"]:
-        distros_information.append(get_distro_information(distro["id"]))
+        distro_info = get_distro_information(distro["id"]);
+        distro_info["resource"] = get_distro_information_resource(distro["id"])
+        distros_information.append(distro_info)
 
     return distros_information 
 
