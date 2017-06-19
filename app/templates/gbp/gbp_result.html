@@ -33,6 +33,7 @@
             <th>Name</th>
             <th>Start Date</th>
             <th>End Date</th>
+            <th>Store List Id</th>
             <th>Time Based Stores</th>
         </tr>
     </thead>
@@ -43,6 +44,11 @@
             <td class="text-center">{{ distro.distroName }} </td>
             <td class="text-center">{{ distro.inStoreStartDate }} </td>
             <td class="text-center">{{ distro.markdownDate }} </td>
+            <td class="text-center">
+                <a href="{{ distro.rollingDistro._links.self.href}} " target="_blank">
+                    {{ distro.rollingDistro.id }}
+                </a>
+            </td>
             <td>
                 Store Lists: {{ distro.rollingDistro.timeBasedStores | length }}
                 <br />
