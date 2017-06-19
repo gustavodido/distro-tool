@@ -4,10 +4,13 @@ from json import loads
 gbp_url = "http://gbp-production.phx.gapinc.com"
 
 def get_distro_information_resource(distroId):
-  return gbp_url + "/store-service/planning/store-plan/assortment-strategies/" + distroId
+    return gbp_url + "/store-service/planning/store-plan/assortment-strategies/" + distroId
 
 def get_distro_information(distroId):
     return loads(get(get_distro_information_resource(distroId)).text)["resource"]
+
+def get_store_list(storeListId):
+    return loads(get(gbp_url + "/store-service/planning/in-season-store-plan/time-based-store-lists/" + storeListId).text)["resource"]
 
 def get_rolling_distro(distroId, subClass, startDate, endDate):
     url = "http://gbp-production.phx.gapinc.com/store-service/planning/in-season-store-plan/rolling-distro-store-lists/search"

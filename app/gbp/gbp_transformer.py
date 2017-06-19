@@ -1,10 +1,18 @@
-from gbp_api import get_distro_information, get_distro_information_resource, get_rolling_distro
+from gbp_api import get_store_list, get_distro_information, get_distro_information_resource, get_rolling_distro
 
 def transform_gbp(cc):
-    return {
+    result = {
      "distros_information": transform_distro_information(cc),
-     "rolling_distro_stores": transform_rolling_distro(cc)
+     "rolling_distro_stores": transform_rolling_distro(cc),
     }
+
+    storeListId = get(cc, "storeListId")
+    result["hasStoreListId"] = False
+    if storeListId:
+        result["ccStoreList"] = get_store_list(cc["storeListId"]) 
+        result["hasStoreListId"] = True
+
+    return result
 
 def transform_distro_information(cc):
     distros_information = []
@@ -26,4 +34,9 @@ def transform_rolling_distro(cc):
         distros.append(distro)
         
     return distros
+
+def get(cc, field):
+    if field in cc:
+        return cc[field]
+    return None
 

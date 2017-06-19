@@ -24,6 +24,29 @@
     </tbody>
 </table>
 <br />
+<b>CC Level Store List Overview</b>
+<br />
+<br /> {% if gbp_info.hasStoreListId %}
+<table class="table table-bordered table-condensed ">
+    <thead>
+        <tr>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Store count</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for stores in gbp_info.ccStoreList.timeBasedStores %}
+        <td class="text-center">{{ stores.startDate }}</td>
+        <td class="text-center">{{ stores.endDate }}</td>
+        <td class="text-center">{{ stores.storeCount }}</td>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<b>Store list ID is no available at CC level.</b> {% endif %}
+<br />
+<br />
 <b>In Season Rolling-distro Store Search</b>
 <br />
 <br />
