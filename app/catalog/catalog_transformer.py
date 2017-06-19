@@ -1,8 +1,10 @@
-from catalog_api import get_cc
+from catalog_api import get_cc, get_cc_resource
 
 def transform_catalog(ccNumber):
     cc = get_cc(ccNumber)
     return {
+        "ccNumber": cc["ccNumber"],
+        "ccResource": get_cc_resource(cc["id"]), 
         "storeListId": get(cc, "storeListId"),
         "skuLocations": len(cc["skus"][0]["locations"]), 
         "subClassId": cc["merchandiseHierarchy"][0]["id"],
