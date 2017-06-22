@@ -60,14 +60,13 @@
             <th>Start Date</th>
             <th>End Date</th>
             <th>Store List Id</th>
-            <th>Time Based Stores</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
         {% for distro in gbp_info.rolling_distro_stores %}
         <tr>
-            <td class="text-center">{{ distro.id }} </td>
+            <td rowspan="2" class="text-center">{{ distro.id }} </td>
             <td class="text-center">{{ distro.distroName }} </td>
             <td class="text-center">{{ distro.inStoreStartDate }} </td>
             <td class="text-center">{{ distro.markdownDate }} </td>
@@ -77,17 +76,36 @@
                 </a>
             </td>
             <td>
-                Store Lists: {{ distro.rollingDistro.timeBasedStores | length }}
-                <br /> {% for stores in distro.rollingDistro.timeBasedStores %}
-                <b>From</b> {{ stores.startDate }}
-                <b>To</b> {{ stores.endDate }}
-                <b>with</b> {{ stores.storeCount }} <b>stores</b>
-                <br /> {% endfor %}
-            </td>
-            <td>
                 <a class="btn btn-primary" href="{{ distro.rollingDistro._links.locationGroups.href}} " target="_blank">
                     Attributes
                 </a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <table class="table table-bordered table-condensed ">
+                    <thead>
+                        <tr>
+                            <th colspan="3">
+                                <b>Store Lists: {{ distro.rollingDistro.timeBasedStores | length }}</b>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Store count</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for stores in distro.rollingDistro.timeBasedStores %}
+                        <tr>
+                            <td class="text-center">{{ stores.startDate }}</td>
+                            <td class="text-center">{{ stores.endDate }}</td>
+                            <td class="text-center">{{ stores.storeCount }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </td>
         </tr>
         {% endfor %}
