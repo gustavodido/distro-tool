@@ -9,7 +9,8 @@ def transform_gbp(cc):
     storeListId = get(cc, "storeListId")
     result["hasStoreListId"] = False
     if storeListId:
-        result["ccStoreList"] = get_store_list(cc["storeListId"]) 
+        strategies = get_store_list(cc["storeListId"]) 
+        result["ccStoreList"] = addStoreComparision(cc, strategies)
         result["hasStoreListId"] = True
 
     return result
@@ -34,6 +35,25 @@ def transform_rolling_distro(cc):
         distros.append(distro)
         
     return distros
+
+def addStoreComparision (cc, strategies):
+    locations = set()
+    for distro in cc["distros"]:
+        for location in distro["activeStores"]:
+            locations.add(location["storeNumber"])
+
+
+    for strategy in strategies["timeBasedStores"]:
+        gbp_locations = set()
+        for location in strategy["storeList"]:
+            if location["location"]["status"] == "ACTIVE":
+                gbp_locations.add(location["locationNumber"])
+
+            strategy["missing_catalog"] = gbp_locations - locations
+            strategy["missing_gbp"] = locations - gbp_locations
+            strategy["activeStoreCount"] = len(gbp_locations)
+
+    return strategies
 
 def get(cc, field):
     if field in cc:

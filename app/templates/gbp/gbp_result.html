@@ -32,7 +32,8 @@
         <tr>
             <th>Start Date</th>
             <th>End Date</th>
-            <th>Store count</th>
+            <th># Stores</th>
+            <th># Active Stores</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -42,6 +43,7 @@
             <td class="text-center">{{ stores.startDate }}</td>
             <td class="text-center">{{ stores.endDate }}</td>
             <td class="text-center">{{ stores.storeCount }}</td>
+            <td class="text-center">{{ stores.activeStoreCount }}</td>
             <td class="text-center">
                 <a class="btn btn-primary store-modal" target="_blank" data-toggle="modal" data-target="#store-modal{{ loop.index }}">
                     Compare
