@@ -1,4 +1,5 @@
- {% for stores in gbp_info.ccStoreList.timeBasedStores %}
+{% if gbp_info.ccStoreList %} 
+{% for stores in gbp_info.ccStoreList.timeBasedStores %}
 <div class="modal fade" id="store-modal{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -33,4 +34,5 @@
         </div>
     </div>
 </div>
-{% endfor %}
+{% endfor %} 
+{% endif %}
