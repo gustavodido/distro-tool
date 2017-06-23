@@ -52,6 +52,7 @@ def addStoreComparision (cc, strategies):
             strategy["missing_catalog"] = gbp_locations - locations
             strategy["missing_gbp"] = locations - gbp_locations
             strategy["activeStoreCount"] = len(gbp_locations)
+            strategy["has_differences"] = len(strategy["missing_catalog"]) == 0 and len(strategy["missing_gbp"]) == 0
 
     return strategies
 
