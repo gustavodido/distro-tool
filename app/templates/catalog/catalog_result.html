@@ -1,11 +1,32 @@
-<b>CC Number:</b> 
-<a href="{{ catalog_cc.ccResource}}" target="_blank">{{ catalog_cc.ccNumber }}</a>
-<br />
-<b>Sub-class ID:</b> {{ catalog_cc.subClassId }}
-<br />
-<b>Store list ID:</b> {{ catalog_cc.storeListId }}
-<br />
-<b>SKU - Locations:</b> {{ catalog_cc.skuLocations }}
+<input type="hidden" value="{{ catalog_cc.ccNumber }}" id="ccNumber" />
+
+<table class="table table-bordeless">
+    <tbody>
+        <tr>
+            <td class="col-lg-11">
+                <b>CC Number:</b>
+                <a href="{{ catalog_cc.ccResource}}" target="_blank">{{ catalog_cc.ccNumber }}</a>
+                <br />
+                <b>Sub-class ID:</b> <span class="text-nowrap">{{ catalog_cc.subClassId }}</span>
+                <br />
+                <b>Store list ID:</b> {{ catalog_cc.storeListId }}
+                <br />
+                <b>SKU - Locations:</b> {{ catalog_cc.skuLocations }}
+            </td>
+            <td class="text-right">
+                <a class="btn btn-primary mb-5 min-width-160" id="refreshDistroName">
+                    Refresh Distro Name
+                </a>
+                <a class="btn btn-primary mb-5 min-width-160"  id="refreshDistroStores">
+                    Refresh Distro Stores
+                </a>
+                <a class="btn btn-primary min-width-160" id="refreshDcMapping">
+                    Refresh DC Mapping
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
 <br />
 <br />
 <b>Distro Overview</b>
