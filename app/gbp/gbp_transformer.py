@@ -31,6 +31,14 @@ def transform_rolling_distro(cc):
         endDate = distro["markdownDate"]
         rolling_distro = get_rolling_distro(distro["id"], cc["subClassId"], startDate, endDate)
         distro["rollingDistro"] = rolling_distro
+
+        for strategy in rolling_distro["timeBasedStores"]:
+            active = 0
+            for location in strategy["storeList"]:
+                if location["location"]["status"] == "ACTIVE":
+                    active = active + 1
+            strategy["activeStoreCount"] = active
+            
             
         distros.append(distro)
         
